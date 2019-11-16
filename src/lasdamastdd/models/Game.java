@@ -1,5 +1,7 @@
 package lasdamastdd.models;
 
+import lasdamastdd.views.GameView;
+
 public class Game {
 
     private Board board;
