@@ -95,7 +95,7 @@ public class GameWithDraughtsTest {
     }  
     
     @Test
-    public void WhenWhiteDraughtMoveAnyDirectionThenNotError() {
+    public void WhenWhiteDraughtMoveLongDistanceThenNotError() {
         Coordinate origin = new Coordinate(0, 1);
         Coordinate target = new Coordinate(4, 5);
         Game game = new GameBuilder2()
@@ -117,7 +117,7 @@ public class GameWithDraughtsTest {
     
     
     @Test
-    public void WhenBlackDraughtMoveAnyDirectionThenNotError() {
+    public void WhenBlackDraughtMoveLongDistanceThenNotError() {
         Coordinate origin = new Coordinate(4, 3);
         Coordinate target = new Coordinate(1, 6);
         Game game = new GameBuilder2()
