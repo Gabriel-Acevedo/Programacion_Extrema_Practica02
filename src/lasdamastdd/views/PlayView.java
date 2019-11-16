@@ -38,10 +38,10 @@ public class PlayView extends SubView {
                     if (origin == null || target == null) {
                         error = Error.BAD_FORMAT;
                     }
-                }/*
+                }
                 if (error != null) {
-                    
-                }*/
+                    console.writeln("Error!!: "+error.name());
+                }
 
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
 
