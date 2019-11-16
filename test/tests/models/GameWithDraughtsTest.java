@@ -49,7 +49,6 @@ public class GameWithDraughtsTest {
         assertEquals(null, game.getPiece(origin.betweenDiagonal(target)));
         assertEquals(Draught.class, game.getPiece(target).getClass());
         assertEquals(Color.WHITE, game.getPiece(target).getColor());
-        System.out.println(game.getBoard().toString());
     }
     
     
@@ -71,7 +70,6 @@ public class GameWithDraughtsTest {
         game.move(origin, target);
         assertEquals(Draught.class, game.getPiece(target).getClass());
         assertEquals(Color.BLACK, game.getPiece(target).getColor());
-        System.out.println(game.getBoard().toString());
     }  
     
     
@@ -94,13 +92,12 @@ public class GameWithDraughtsTest {
         assertEquals(null, game.getPiece(origin.betweenDiagonal(target)));
         assertEquals(Draught.class, game.getPiece(target).getClass());
         assertEquals(Color.BLACK, game.getPiece(target).getColor());
-        System.out.println(game.getBoard().toString());
     }  
     
     @Test
     public void WhenWhiteDraughtMoveAnyDirectionThenNotError() {
         Coordinate origin = new Coordinate(0, 1);
-        Coordinate target = new Coordinate(1, 2);
+        Coordinate target = new Coordinate(4, 5);
         Game game = new GameBuilder2()
                 .row(" B      ")
                 .row("        ")
@@ -111,8 +108,33 @@ public class GameWithDraughtsTest {
                 .row("        ")
                 .row("        ")
                 .build();
+        game.getBoard().put(origin, new Draught(Color.WHITE));
         game.move(origin, target);
         assertEquals(Draught.class, game.getPiece(target).getClass());
         assertEquals(Color.WHITE, game.getPiece(target).getColor());
+        System.out.println(game.getBoard().toString());
     }
+    
+    
+    @Test
+    public void WhenBlackDraughtMoveAnyDirectionThenNotError() {
+        Coordinate origin = new Coordinate(4, 3);
+        Coordinate target = new Coordinate(1, 6);
+        Game game = new GameBuilder2()
+                .row(" B      ")
+                .row("        ")
+                .row("        ")
+                .row("        ")
+                .row("   N    ")
+                .row("        ")
+                .row("        ")
+                .row("        ")
+                .build();
+        game.getBoard().put(origin, new Draught(Color.BLACK));
+        game.getTurn().change();
+        game.move(origin, target);
+        assertEquals(Draught.class, game.getPiece(target).getClass());
+        assertEquals(Color.BLACK, game.getPiece(target).getColor());
+    }
+    
 }
