@@ -33,9 +33,9 @@ public class Game {
     public Piece getInitialPiece(Coordinate coordinate) {
         if (coordinate.isBlack()) {
             if (coordinate.getRow() < EMPTY_SQUARES_START_ROW) {
-                return new Piece(Color.BLACK);
+                return new Pawn(Color.BLACK);
             } else if (coordinate.getRow() > EMPTY_SQUARES_FINISH_ROW) {
-                return new Piece(Color.WHITE);
+                return new Pawn(Color.WHITE);
             }
         }
         return null;
@@ -90,7 +90,7 @@ public class Game {
         return this.board + "\n" + this.turn;
     }
 
-    Board getBoard() {
+    public Board getBoard() {
         return this.board;
     }
 
