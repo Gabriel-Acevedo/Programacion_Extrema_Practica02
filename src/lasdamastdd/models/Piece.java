@@ -3,7 +3,7 @@ package lasdamastdd.models;
 public class Piece {
 
     private Color color;
-    private static final int MAX_DISTANCE = 2;
+    public static final int MAX_DISTANCE = 2;
 
     public static final String[] pieceTypes = {"b", "n", "B", "N", " "};
     public static Piece[] PIECES = new Piece[]{

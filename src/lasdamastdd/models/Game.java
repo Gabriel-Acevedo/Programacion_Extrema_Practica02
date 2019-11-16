@@ -43,13 +43,13 @@ public class Game {
 
     public void move(Coordinate origin, Coordinate target) {
         assert this.isCorrect(origin, target) == null;
-        if (origin.diagonalDistance(target) == 2) {
+        if (origin.diagonalDistance(target) == Piece.MAX_DISTANCE) {
             this.board.remove(origin.betweenDiagonal(target));
         } 
         this.board.move(origin, target);
         if(this.board.getPiece(target).isLimit(target)){ 
             this.board.remove(target);
-            this.board.put(target, new Draught(this.turn.getColor()));  
+            this.board.put(target, new Draught(this.getColor()));  
         }
         this.turn.change();
 
