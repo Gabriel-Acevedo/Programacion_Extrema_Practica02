@@ -13,7 +13,6 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
 
 public class GameWithDraughtsTest {
@@ -37,10 +36,8 @@ public class GameWithDraughtsTest {
 
     @Test
     public void testGivenGameWhenWhitePawnAtLimitThenNewDraugts() {
-        
         Coordinate origin = new Coordinate(1, 0);
         Coordinate target = new Coordinate(0, 1);
-        
         Game game2 = new GameBuilder2()
              .row("        ")
              .row("b       ")

@@ -33,8 +33,7 @@ public class Piece {
     }
 
     boolean isLimit(Coordinate coordinate) {
-        return coordinate.getRow() == Board.INITIAL_LIMIT && this.getColor() == Color.WHITE
-                || coordinate.getRow() == Board.FINAL_LIMIT && this.getColor() == Color.BLACK;
+        return coordinate.getRow() == Board.INITIAL_LIMIT && this.getColor() == Color.WHITE || coordinate.getRow() == Board.FINAL_LIMIT && this.getColor() == Color.BLACK;
     }
 
     public boolean isAdvanced(Coordinate origin, Coordinate target) {

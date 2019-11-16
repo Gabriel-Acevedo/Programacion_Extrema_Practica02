@@ -35,7 +35,6 @@ public class GameBuilder2 {
     public Game build() {
         Board board = new Board();
         char character;
-        int ordinal;
         for (int i = 0; i < this.strings.size(); i++) {
             for (int j = 0; j < this.strings.size(); j++) {
                 character = this.strings.get(i).charAt(j);

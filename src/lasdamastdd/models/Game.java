@@ -45,8 +45,12 @@ public class Game {
         assert this.isCorrect(origin, target) == null;
         if (origin.diagonalDistance(target) == 2) {
             this.board.remove(origin.betweenDiagonal(target));
-        }
+        } 
         this.board.move(origin, target);
+        if(this.board.getPiece(target).isLimit(target)){ 
+            this.board.remove(target);
+            this.board.put(target, new Draught(this.turn.getColor()));  
+        }
         this.turn.change();
 
     }
