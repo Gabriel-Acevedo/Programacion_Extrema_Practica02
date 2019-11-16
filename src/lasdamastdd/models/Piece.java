@@ -2,7 +2,9 @@ package lasdamastdd.models;
 
 public class Piece {
 
-    private Color color;
+    Color color;
+    private Pawn pawn;
+    private Draught draught;
     public static final int MAX_DISTANCE = 2;
 
     public static final String[] pieceTypes = {"b", "n", "B", "N", " "};
@@ -19,25 +21,10 @@ public class Piece {
     }
 
     public Error isCorrect(Coordinate origin, Coordinate target, PieceProvider pieceProvider) {
-        if (!origin.isDiagonal(target)) {
-            return Error.NOT_DIAGONAL;
+        if(this instanceof Draught){
+            return draught.isCorrect(origin, target, pieceProvider);
         }
-        if (!this.isAdvanced(origin, target)) {
-            return Error.NOT_ADVANCED;
-        }
-        int distance = origin.diagonalDistance(target);
-        if (distance > Piece.MAX_DISTANCE) {
-            return Error.BAD_DISTANCE;
-        }
-        if (!pieceProvider.isEmpty(target)) {
-            return Error.NOT_EMPTY_TARGET;
-        }
-        if (distance == Piece.MAX_DISTANCE) {
-            if (pieceProvider.getPiece(origin.betweenDiagonal(target)) == null) {
-                return Error.EATING_EMPTY;
-            }
-        }
-        return null;
+        return pawn.isCorrect(origin, target, pieceProvider);
     }
 
     boolean isLimit(Coordinate coordinate) {
@@ -45,13 +32,10 @@ public class Piece {
     }
 
     public boolean isAdvanced(Coordinate origin, Coordinate target) {
-        assert origin != null;
-        assert target != null;
-        int difference = origin.getRow() - target.getRow();
-        if (color == Color.WHITE) {
-            return difference > 0;
+        if(this instanceof Draught){
+            return draught.isAdvanced(origin, target);
         }
-        return difference < 0;
+        return pawn.isAdvanced(origin, target);
     }
 
     public Color getColor() {
