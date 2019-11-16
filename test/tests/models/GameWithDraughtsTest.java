@@ -30,5 +30,26 @@ public class GameWithDraughtsTest {
         assertEquals(Draught.class, game.getPiece(target).getClass());
         assertEquals(Color.WHITE, game.getPiece(target).getColor());
     }
+    
+    @Test
+    public void testGivenGameWhenWhitePawnReachLimitAndEatingThenNewDraugts() {
+        Coordinate origin = new Coordinate(2, 0);
+        Coordinate target = new Coordinate(0, 2);
+        Game game = new GameBuilder2()
+             .row("        ")
+             .row(" n      ")
+             .row("b       ")
+             .row("        ")
+             .row("        ")
+             .row("        ")
+             .row("        ")
+             .row("        ")
+             .build();
+        game.move(origin, target);
+        assertEquals(null, game.getPiece(origin.betweenDiagonal(target)));
+        assertEquals(Draught.class, game.getPiece(target).getClass());
+        assertEquals(Color.WHITE, game.getPiece(target).getColor());
+        System.out.println(game.getBoard().toString());
+    }
 
 }
