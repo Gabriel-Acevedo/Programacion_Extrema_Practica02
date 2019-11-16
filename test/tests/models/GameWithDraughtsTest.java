@@ -13,6 +13,7 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
 
 public class GameWithDraughtsTest {
@@ -39,7 +40,8 @@ public class GameWithDraughtsTest {
         
         Coordinate origin = new Coordinate(1, 0);
         Coordinate target = new Coordinate(0, 1);
-        Game game = new GameBuilder2()
+        
+        Game game2 = new GameBuilder2()
              .row("        ")
              .row("b       ")
              .row("   n    ")
@@ -49,7 +51,7 @@ public class GameWithDraughtsTest {
              .row("        ")
              .row("        ")
              .build();
-        game.move(origin, target);
+        game2.move(origin, target);
         verify(board).remove(target);
         verify(board).put(target, new Draught(Color.WHITE));
     }
