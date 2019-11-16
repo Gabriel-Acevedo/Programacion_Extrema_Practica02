@@ -4,10 +4,13 @@ import lasdamastdd.controllers.Controller;
 import lasdamastdd.models.Board;
 import lasdamastdd.models.Color;
 import lasdamastdd.models.Coordinate;
+import lasdamastdd.models.Draught;
+import lasdamastdd.models.Pawn;
+import lasdamastdd.models.Piece;
 
 public class GameView extends SubView {
 
-    private static final String[] COLORS = new String[]{"b", "n", " "};
+    private static final String[] PIECES = new String[]{"b", "n","B", "N", " "};
     
     public void write(Controller controller) {
         assert controller != null;
@@ -16,11 +19,21 @@ public class GameView extends SubView {
         for (int i = 0; i < Board.DIMENSION; i++) {
             this.console.write((i + 1) + "");
             for (int j = 0; j < Board.DIMENSION; j++) {
-                Color color = controller.getColor(new Coordinate(i, j));
-                if (color == null) {
-                    this.console.write(GameView.COLORS[2]);
-                } else {
-                    this.console.write(GameView.COLORS[color.ordinal()]);
+               Piece piece = controller.getPiece(new Coordinate(i, j));
+                if (piece == null) {
+                    this.console.write(GameView.PIECES[4]);
+                }
+                else if(piece.getColor() == Color.WHITE && (piece instanceof Pawn)){
+                    this.console.write(GameView.PIECES[0]);
+                }
+                else if(piece.getColor() == Color.BLACK && (piece instanceof Pawn)){
+                    this.console.write(GameView.PIECES[1]);
+                }
+                else if(piece.getColor() == Color.WHITE && (piece instanceof Draught)){
+                    this.console.write(GameView.PIECES[2]);
+                }
+                else if(piece.getColor() == Color.BLACK && (piece instanceof Draught)){
+                    this.console.write(GameView.PIECES[3]);
                 }
             }
             this.console.writeln((i + 1) + "");

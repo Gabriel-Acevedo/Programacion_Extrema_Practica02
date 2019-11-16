@@ -19,6 +19,6 @@ public class PlayControllerTest {
         assertNull(playController.isCorrect(origin, target));
         playController.move(origin, target);
         assertNull(playController.getPiece(origin));
-        assertEquals(playController.getColor(target), Color.WHITE);
+        assertEquals(playController.getPiece(target).getColor(), Color.WHITE);
     }
 }

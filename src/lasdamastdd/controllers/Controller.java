@@ -1,8 +1,8 @@
 package lasdamastdd.controllers;
 
-import lasdamastdd.models.Color;
 import lasdamastdd.models.Coordinate;
 import lasdamastdd.models.Game;
+import lasdamastdd.models.Piece;
 import lasdamastdd.models.State;
 
 public abstract class Controller {
@@ -16,10 +16,10 @@ public abstract class Controller {
         this.game = game;
         this.state = state;
     }
-
-    public Color getColor(Coordinate coordinate) {
+  
+    public Piece getPiece(Coordinate coordinate){
         assert coordinate != null;
-        return this.game.getColor(coordinate);
+        return this.game.getPiece(coordinate);
     }
 
     abstract public void accept(ControllersVisitor controllersVisitor);
