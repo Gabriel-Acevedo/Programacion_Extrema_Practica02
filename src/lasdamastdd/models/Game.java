@@ -94,7 +94,7 @@ public class Game {
         return this.board;
     }
 
-    Turn getTurn() {
+    public Turn getTurn() {
         return this.turn;
     }
 

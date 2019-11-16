@@ -51,5 +51,50 @@ public class GameWithDraughtsTest {
         assertEquals(Color.WHITE, game.getPiece(target).getColor());
         System.out.println(game.getBoard().toString());
     }
-
+    
+    
+    @Test
+    public void testGivenGameWhenBlackPawnReachLimitThenNewDraugts() {
+        Coordinate origin = new Coordinate(6, 2);
+        Coordinate target = new Coordinate(7, 1);
+        Game game = new GameBuilder2()
+             .row("        ")
+             .row(" n      ")
+             .row("b       ")
+             .row("        ")
+             .row("        ")
+             .row("        ")
+             .row("  n     ")
+             .row("        ")
+             .build();
+        game.getTurn().change();
+        game.move(origin, target);
+        assertEquals(Draught.class, game.getPiece(target).getClass());
+        assertEquals(Color.BLACK, game.getPiece(target).getColor());
+        System.out.println(game.getBoard().toString());
+    }  
+    
+    
+    @Test
+    public void testGivenGameWhenBlackPawnReachLimitAndEatingThenNewDraugts() {
+        Coordinate origin = new Coordinate(5, 3);
+        Coordinate target = new Coordinate(7, 1);
+        Game game = new GameBuilder2()
+             .row("        ")
+             .row(" n      ")
+             .row("b       ")
+             .row("        ")
+             .row("        ")
+             .row("   n    ")
+             .row("  b     ")
+             .row("        ")
+             .build();
+        game.getTurn().change();
+        game.move(origin, target);
+        assertEquals(null, game.getPiece(origin.betweenDiagonal(target)));
+        assertEquals(Draught.class, game.getPiece(target).getClass());
+        assertEquals(Color.BLACK, game.getPiece(target).getColor());
+        System.out.println(game.getBoard().toString());
+    }  
+    
 }
