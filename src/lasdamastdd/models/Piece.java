@@ -5,6 +5,14 @@ public class Piece {
     private Color color;
     private static final int MAX_DISTANCE = 2;
 
+    public static final String[] pieceTypes = {"b", "n", "B", "N", " "};
+    public static Piece[] PIECES = new Piece[]{
+        new Pawn(Color.WHITE),
+        new Pawn(Color.BLACK),
+        new Draught(Color.WHITE),
+        new Draught(Color.BLACK)
+    };
+    
     public Piece(Color color) {
         assert color != null;
         this.color = color;

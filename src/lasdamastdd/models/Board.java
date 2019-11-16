@@ -91,15 +91,10 @@ public class Board implements PieceProvider {
             if (piece == null) {
                 string += " ";
             } else {
-                final String[] letters = {"b", "n", "B", "N"};
-                if (piece.getColor() == Color.WHITE && (piece instanceof Pawn)) {
-                    string += letters[0];
-                } else if (piece.getColor() == Color.BLACK && (piece instanceof Pawn)) {
-                    string += letters[1];
-                } else if (piece.getColor() == Color.WHITE && (piece instanceof Draught)) {
-                    string += letters[2];
-                } else if (piece.getColor() == Color.BLACK && (piece instanceof Draught)) {
-                    string += letters[3];
+                for (int p = 0; p < Piece.PIECES.length; p++) {
+                    if (Piece.PIECES[p].getClass() == piece.getClass() && Piece.PIECES[p].getColor() == piece.getColor()) {
+                        string += Piece.pieceTypes[p];
+                    }
                 }
             }
         }
