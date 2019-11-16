@@ -13,7 +13,7 @@ import org.junit.Test;
 public class GameWithDraughtsTest {
 
     @Test
-    public void testGivenGameWhenWhitePawnAtLimitThenNewDraugts() {
+    public void WhenWhitePawnAtLimitThenNewDraugts() {
         Coordinate origin = new Coordinate(1, 0);
         Coordinate target = new Coordinate(0, 1);
         Game game = new GameBuilder2()
@@ -32,7 +32,7 @@ public class GameWithDraughtsTest {
     }
     
     @Test
-    public void testGivenGameWhenWhitePawnReachLimitAndEatingThenNewDraugts() {
+    public void WhenWhitePawnReachLimitAndEatingThenNewDraugts() {
         Coordinate origin = new Coordinate(2, 0);
         Coordinate target = new Coordinate(0, 2);
         Game game = new GameBuilder2()
@@ -54,7 +54,7 @@ public class GameWithDraughtsTest {
     
     
     @Test
-    public void testGivenGameWhenBlackPawnReachLimitThenNewDraugts() {
+    public void WhenBlackPawnReachLimitThenNewDraugts() {
         Coordinate origin = new Coordinate(6, 2);
         Coordinate target = new Coordinate(7, 1);
         Game game = new GameBuilder2()
@@ -76,7 +76,7 @@ public class GameWithDraughtsTest {
     
     
     @Test
-    public void testGivenGameWhenBlackPawnReachLimitAndEatingThenNewDraugts() {
+    public void WhenBlackPawnReachLimitAndEatingThenNewDraugts() {
         Coordinate origin = new Coordinate(5, 3);
         Coordinate target = new Coordinate(7, 1);
         Game game = new GameBuilder2()
@@ -97,4 +97,22 @@ public class GameWithDraughtsTest {
         System.out.println(game.getBoard().toString());
     }  
     
+    @Test
+    public void WhenWhiteDraughtMoveAnyDirectionThenNotError() {
+        Coordinate origin = new Coordinate(0, 1);
+        Coordinate target = new Coordinate(1, 2);
+        Game game = new GameBuilder2()
+                .row(" B      ")
+                .row("        ")
+                .row("        ")
+                .row("        ")
+                .row("        ")
+                .row("    n   ")
+                .row("        ")
+                .row("        ")
+                .build();
+        game.move(origin, target);
+        assertEquals(Draught.class, game.getPiece(target).getClass());
+        assertEquals(Color.WHITE, game.getPiece(target).getColor());
+    }
 }
