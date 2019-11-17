@@ -98,5 +98,9 @@ public class Game {
         return this.turn;
     }
 
+    
+    public boolean isBlocked(){
+        return !this.board.MovesAvailable(this.turn.getColor());
+    }
 
 }

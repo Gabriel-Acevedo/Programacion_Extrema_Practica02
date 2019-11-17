@@ -9,6 +9,7 @@ import lasdamastdd.models.GameBuilder2;
 import lasdamastdd.models.Piece;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 public class GameTest {
@@ -138,8 +139,7 @@ public class GameTest {
     }
     
     @Test
-    public void WhenWhitePiecesAreBlockedThenEndGame() {
-        Coordinate origin = new Coordinate(1, 2);
+    public void WhenWhitePiecesAreBlockedThenTrue() {
         Game game = new GameBuilder2()
                 .row(" n n    ")
                 .row("n b n   ")

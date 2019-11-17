@@ -100,4 +100,41 @@ public class Board implements PieceProvider {
         }
         return string + row + "\n";
     }
+    
+    
+    boolean MovesAvailable(Color color) {
+
+        boolean movesAvailable = false;
+        List<Piece> pieces = getPieces(color);
+        for (int i = 0; i < pieces.size(); i++) {
+
+            if (pieces.get(i) instanceof Pawn && !movesAvailable) {
+                for (int a = 0; a < Board.DIMENSION; a++) {
+                    for (int b = 0; b < Board.DIMENSION; b++) {
+                        if (this.squares[a][b].getColor() == color) {
+                            if (this.squares[a][b].getPiece() == pieces.get(i)) {
+
+                                Coordinate origin = new Coordinate(a, b);
+                                Coordinate target = new Coordinate(a - 1, b + 1);
+                                if (pieces.get(i).isCorrect(origin, target, this) != null) {
+                                    target = new Coordinate(a - 1, b - 1);
+                                    movesAvailable = pieces.get(i).isCorrect(origin, target, this) == null;
+                                } else {
+                                    movesAvailable = true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (pieces.get(i) instanceof Draught) {
+
+            }
+            if(movesAvailable){
+                return movesAvailable;
+            }
+        }
+
+        return movesAvailable;
+    }
 }
