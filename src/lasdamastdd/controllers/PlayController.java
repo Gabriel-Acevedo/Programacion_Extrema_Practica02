@@ -6,6 +6,7 @@ import lasdamastdd.models.Error;
 import lasdamastdd.models.Game;
 import lasdamastdd.models.Piece;
 import lasdamastdd.models.State;
+import lasdamastdd.models.StateValue;
 
 public class PlayController extends Controller {
 
@@ -16,7 +17,7 @@ public class PlayController extends Controller {
     public void move(Coordinate origin, Coordinate target) {
         assert this.isCorrect(origin, target) == null;
         this.game.move(origin, target);
-        if (this.game.hasNoPieces()) {
+        if (this.game.hasNoPieces() || this.game.isBlocked()) {
             this.state.next();
         }
     }
@@ -48,6 +49,14 @@ public class PlayController extends Controller {
     public void accept(ControllersVisitor controllersVisitor) {
         assert controllersVisitor != null;
         controllersVisitor.visit(this);
+    }
+    
+    public StateValue getStateValue(){
+        return this.state.getValueState();
+    }
+
+    public void setStateValue(StateValue stateValue){
+        this.state.setValueState(stateValue);
     }
 
 }
