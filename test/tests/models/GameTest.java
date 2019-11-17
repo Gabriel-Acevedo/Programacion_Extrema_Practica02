@@ -154,4 +154,21 @@ public class GameTest {
         assertTrue(game.isBlocked());
     }
     
+        @Test
+    public void WhenBlackPiecesAreBlockedThenTrue() {
+        Game game = new GameBuilder2()
+                .row("        ")
+                .row("        ")
+                .row("        ")
+                .row("  b     ")
+                .row("        ")
+                .row("        ")
+                .row("n n     ")
+                .row(" b b    ")
+                .build();
+        game.getTurn().change();
+        assertEquals(Color.BLACK, game.getTurn().getColor());
+        assertTrue(game.isBlocked());
+    }
+    
 }

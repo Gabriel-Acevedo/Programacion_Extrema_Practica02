@@ -7,6 +7,7 @@ import lasdamastdd.models.Game;
 import lasdamastdd.models.GameBuilder2;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 
@@ -155,8 +156,47 @@ public class GameWithDraughtsTest {
         assertEquals(null, game.getPiece(origin.betweenDiagonal(target)));
         assertEquals(Draught.class, game.getPiece(target).getClass());
         assertEquals(Color.WHITE, game.getPiece(target).getColor());
-        System.out.println(game.getBoard().toString());
     }
  
+    
+    @Test
+    public void WhenWhiteDraughtIsBlockedThenTrue() {
+        Coordinate origin = new Coordinate(2, 3);
+        Game game = new GameBuilder2()
+                .row(" n n n  ")
+                .row("n n n   ")
+                .row("   B    ")
+                .row("  n n   ")
+                .row(" n   n  ")
+                .row("n     n ")
+                .row("       n")
+                .row("        ")
+                .build();
+        game.getBoard().remove(origin);
+        game.getBoard().put(origin, new Draught(Color.WHITE));
+        assertEquals(Color.WHITE, game.getTurn().getColor());
+        assertTrue(game.isBlocked());
+    }
+    
+    
+    @Test
+    public void WhenBlackDraughtsIsBlockedThenTrue() {
+        Coordinate origin = new Coordinate(2, 3);
+        Game game = new GameBuilder2()
+                .row(" n   n  ")
+                .row("b b b b ")
+                .row(" b N   b")
+                .row("b b b   ")
+                .row(" b   b  ")
+                .row("b     b ")
+                .row("       b")
+                .row("        ")
+                .build();
+        game.getBoard().remove(origin);
+        game.getBoard().put(origin, new Draught(Color.BLACK));
+        game.getTurn().change();
+        assertEquals(Color.BLACK, game.getTurn().getColor());
+        assertTrue(game.isBlocked());
+    }
     
 }
