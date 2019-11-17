@@ -5,6 +5,7 @@ import lasdamastdd.models.Color;
 import lasdamastdd.models.Coordinate;
 import lasdamastdd.models.Game;
 import lasdamastdd.models.Error;
+import lasdamastdd.models.GameBuilder2;
 import lasdamastdd.models.Piece;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -135,4 +136,22 @@ public class GameTest {
             {new Coordinate(5, 6), new Coordinate(4, 7)},
             {new Coordinate(1, 6), new Coordinate(4, 3)},}));
     }
+    
+    @Test
+    public void WhenWhitePiecesAreBlockedThenEndGame() {
+        Coordinate origin = new Coordinate(1, 2);
+        Game game = new GameBuilder2()
+                .row(" n n    ")
+                .row("n b n   ")
+                .row("        ")
+                .row("  n     ")
+                .row("        ")
+                .row("        ")
+                .row("        ")
+                .row("        ")
+                .build();
+        assertEquals(Color.WHITE, game.getTurn().getColor());
+        assertTrue(game.isBlocked());
+    }
+    
 }
